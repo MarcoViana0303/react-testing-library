@@ -3,6 +3,7 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from '../renderWithRouter';
+import { act } from 'react-dom/test-utils';
 
 describe('Requisito 1', () => {
   test('se o topo da aplicação contém um conjunto fixo de links de navegação:', () => {
@@ -23,29 +24,29 @@ describe('Requisito 1', () => {
     // Clicar no link
     userEvent.click(homeEl);
     // Verificar se a rota é /
-    const rota = history.location;
+    const rota = history.location.pathname;
     expect(rota).toBe('/');
   });
 
   test('aplic. redirec. para página about, na URL /about ao clicar no link About', () => {
     const { history } = renderWithRouter(<App />);
-    // Pegar o elemento do link Home
+    // Pegar o elemento do link About
     const aboutEl = screen.getByRole('link', { name: 'About' });
     // Clicar no link
     userEvent.click(aboutEl);
     // Verificar se a rota é /about
-    const rota = history.location;
+    const rota = history.location.pathname;
     expect(rota).toBe('/about');
   });
 
   test('redir. p pág Pok Favorit, na URL /favorites ao click no link Favor Poké', () => {
     const { history } = renderWithRouter(<App />);
-    // Pegar o elemento do link Home
+    // Pegar o elemento do link Favorite
     const favoriteEl = screen.getByRole('link', { name: /favorite pokémons/i });
     // Clicar no link
     userEvent.click(favoriteEl);
     // Verificar se a rota é /favorites
-    const rota = history.location;
+    const rota = history.location.pathname;
     expect(rota).toBe('/favorites');
   });
 
@@ -58,8 +59,13 @@ describe('Requisito 1', () => {
 
     const notFoundTitle = screen.getByRole(
       'heading',
-      { name: 'Page requested not found' },
+      { name: /Page requested not found/i },
     );
+    const imagePikachu = screen.getByRole('img', {
+      name: /pikachu crying because the page requested was not found/i,
+    });
+
     expect(notFoundTitle).toBeInTheDocument();
+    expect(imagePikachu).toBeInTheDocument();
   });
 });
