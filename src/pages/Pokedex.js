@@ -38,6 +38,7 @@ class Pokedex extends React.Component {
 
   fetchPokemonTypes() {
     const { pokemons } = this.props;
+    console.log( pokemons );
 
     return [...new Set(pokemons.reduce((types, { type }) => [...types, type], []))];
   }
