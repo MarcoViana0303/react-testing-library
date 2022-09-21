@@ -24,8 +24,36 @@ describe('Requisito 5', () => {
   test('Teste se a Pokédex tem os botões de filtro', () => {
     renderWithRouter(<App />);
     const buttonsEl = screen.getAllByTestId('pokemon-type-button');
+    const eletric = screen.getByRole('button', {
+      name: /electric/i,
+    });
+    const fire = screen.getByRole('button', {
+      name: /fire/i,
+    });
+    const bug = screen.getByRole('button', {
+      name: /bug/i,
+    });
+    const poison = screen.getByRole('button', {
+      name: /poison/i,
+    });
+    const psychic = screen.getByRole('button', {
+      name: /psychic/i,
+    });
+    const normal = screen.getByRole('button', {
+      name: /normal/i,
+    });
+    const dragon = screen.getByRole('button', {
+      name: /dragon/i,
+    });
     const tamanho = 7;
     expect(buttonsEl).toHaveLength(tamanho);
+    expect(eletric).toBeInTheDocument();
+    expect(fire).toBeInTheDocument();
+    expect(bug).toBeInTheDocument();
+    expect(poison).toBeInTheDocument();
+    expect(normal).toBeInTheDocument();
+    expect(dragon).toBeInTheDocument();
+    expect(psychic).toBeInTheDocument();
   });
 
   test('se a Pokédex contém um botão para resetar o filtro', () => {
