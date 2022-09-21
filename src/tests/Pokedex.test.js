@@ -33,6 +33,5 @@ describe('Requisito 5', () => {
     const botaoReset = screen.getByRole('button', { name: /all/i });
     expect(botaoReset).toBeInTheDocument();
     userEvent.click(botaoReset);
-    expect(botaoReset).toBeDefined();
   });
 });
