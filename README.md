@@ -34,7 +34,7 @@ Clone o projeto
 Entre no diretório do projeto
 
 ```bash
-  cd sd-024-a-project-react-testing-library
+  cd react-testing-library
 ```
 
 Instale as dependências
